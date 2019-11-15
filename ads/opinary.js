@@ -46,5 +46,9 @@ export function opinary(global, data) {
 
   const url = `https://widgets.opinary.com/a/${data.client}.js`;
 
-  loadScript(global, url);
+  const success = () => {};
+  // Slot can not be filled, will try to collapse available space, if not in viewport https://github.com/ampproject/amphtml/tree/master/ads#available-apis
+  const error = () => global.context.noContentAvailable();
+
+  loadScript(global, url, success, error);
 }
